@@ -6,7 +6,7 @@ type MainProps = {
 
 function App({rentalOffersNumber}: MainProps) {
   return (
-    <Main rentalOffersNumber={rentalOffersNumber}></Main>
+    <Main rentalOffersNumber={rentalOffersNumber} />
   );
 }
 
