@@ -26,7 +26,8 @@ function App({rentalOffersNumber}: MainProps) {
               authorizationStatus={AuthorizationStatus.NoAuth}
             >
               <Favorite />
-            </PrivateRoute>}
+            </PrivateRoute>
+          }
         />
         <Route
           path={AppRoute.Login}
