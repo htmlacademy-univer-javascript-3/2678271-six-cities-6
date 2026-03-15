@@ -1,10 +1,13 @@
-import Card from '../card/card';
+import OffersList from '../offers-list/offers-list';
+import {Offers} from '../../types/offer';
+
 
 type MainProps = {
   rentalOffersNumber: number;
+  offers: Offers[];
 }
 
-function Main({rentalOffersNumber}: MainProps) {
+function Main({rentalOffersNumber, offers}: MainProps) {
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -115,11 +118,7 @@ function Main({rentalOffersNumber}: MainProps) {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
+                <OffersList offers={offers}/>
               </div>
             </section>
             <div className="cities__right-section">
