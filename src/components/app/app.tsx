@@ -9,11 +9,10 @@ import PrivateRoute from '../../pages/private-route/private-route';
 import {Offer} from '../../types/offer';
 
 type MainProps = {
-  rentalOfferNumber: number;
   offers: Offer[];
 }
 
-function App({rentalOfferNumber, offers}: MainProps) {
+function App({offers}: MainProps) {
   const favoriteOffer = offers.filter((offer) => offer.isFavorite);
 
   return (
@@ -23,7 +22,7 @@ function App({rentalOfferNumber, offers}: MainProps) {
           path={AppRoute.Main}
           element={
             <Main
-              rentalOffersNumber={rentalOfferNumber}
+              rentalOffersNumber={offers.length}
               offers={offers}
             />
           }

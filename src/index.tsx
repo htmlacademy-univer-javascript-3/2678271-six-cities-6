@@ -7,11 +7,9 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-const rentalOffersNumber = 5;
 root.render(
   <React.StrictMode>
     <App
-      rentalOffersNumber={rentalOffersNumber}
       offers={offers}
     />
   </React.StrictMode>
