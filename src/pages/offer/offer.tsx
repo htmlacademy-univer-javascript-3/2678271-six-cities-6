@@ -4,7 +4,7 @@ import CommentForm from '../comment-form/comment-form';
 
 import { Link } from 'react-router-dom';
 
-function Offer() {
+function OfferPage() {
   const { id } = useParams<{ id: string }>();
   const offer = offers.find((item) => item.id === id);
 
@@ -380,4 +380,4 @@ function Offer() {
     </div>
   );
 }
-export default Offer;
+export default OfferPage;

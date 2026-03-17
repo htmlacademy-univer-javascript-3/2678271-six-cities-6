@@ -1,14 +1,14 @@
-import {Offers} from '../../types/offer';
+import {Offer} from '../../types/offer';
 import {Link} from 'react-router-dom';
 
 type FavoriteProps = {
-  offers: Offers[];
+  offers: Offer[];
 };
 
 function Favorite(props: FavoriteProps){
   const {offers} = props;
 
-  const offersByCity = offers.reduce<Record<string, Offers[]>>((acc, offer) => {
+  const offersByCity = offers.reduce<Record<string, Offer[]>>((acc, offer) => {
     const cityName = offer.city.name;
     if (!acc[cityName]) {
       acc[cityName] = [];
@@ -64,7 +64,7 @@ function Favorite(props: FavoriteProps){
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
-              {Object.entries(offersByCity).map(([cityName, cityOffers]) => (
+              {Object.entries(offersByCity).map(([cityName, cityOffer]) => (
                 <li key={cityName} className="favorites__locations-items">
                   <div className="favorites__locations locations locations--current">
                     <div className="locations__item">
@@ -74,7 +74,7 @@ function Favorite(props: FavoriteProps){
                     </div>
                   </div>
                   <div className="favorites__places">
-                    {cityOffers.map((offer) => {
+                    {cityOffer.map((offer) => {
                       const ratingWidth = `${Math.round(offer.rating) * 20}%`;
 
                       return (

@@ -1,13 +1,13 @@
-import {Offers} from '../../types/offer';
+import {Offer} from '../../types/offer';
 import Card from '../card/card';
 import {useState} from 'react';
 
 
-type OffersListProps = {
-  offers: Offers[];
+type OfferListProps = {
+  offers: Offer[];
 };
 
-function OffersList(props: OffersListProps){
+function OfferList(props: OfferListProps){
   const {offers} = props;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -23,4 +23,4 @@ function OffersList(props: OffersListProps){
 
   );
 }
-export default OffersList;
+export default OfferList;

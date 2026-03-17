@@ -1,9 +1,9 @@
-import {Offers} from '../../types/offer';
+import {Offer} from '../../types/offer';
 import { Link } from 'react-router-dom';
 
 
 type CardProps = {
-  offer: Offers;
+  offer: Offer;
 };
 
 function Card(props: CardProps){

@@ -1,10 +1,10 @@
-import OffersList from '../offers-list/offers-list';
-import {Offers} from '../../types/offer';
+import OfferList from '../offers-list/offers-list';
+import {Offer} from '../../types/offer';
 
 
 type MainProps = {
   rentalOffersNumber: number;
-  offers: Offers[];
+  offers: Offer[];
 }
 
 function Main({rentalOffersNumber, offers}: MainProps) {
@@ -118,7 +118,7 @@ function Main({rentalOffersNumber, offers}: MainProps) {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <OffersList offers={offers}/>
+                <OfferList offers={offers}/>
               </div>
             </section>
             <div className="cities__right-section">
