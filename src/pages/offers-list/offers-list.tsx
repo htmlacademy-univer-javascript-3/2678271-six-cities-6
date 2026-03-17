@@ -14,13 +14,14 @@ function OfferList(props: OfferListProps){
   const [activeCardId, setActiveCardId] = useState<string | null>(null);
 
   return(
-    offers.map((offer) => (
-      <Card
-        key={offer.id}
-        offer={offer}
-      />
-    ))
-
+    <div className="cities__places-list places__list tabs__content">
+      {offers.map((offer) => (
+        <Card
+          key={offer.id}
+          offer={offer}
+        />
+      ))}
+    </div>
   );
 }
 export default OfferList;
