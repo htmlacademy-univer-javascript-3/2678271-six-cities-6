@@ -10,7 +10,6 @@ type OfferListProps = {
 function OfferList(props: OfferListProps){
   const {offers} = props;
 
-  // eslint-disable-next-line
   const [activeCardId, setActiveCardId] = useState<string | null>(null);
 
   return(
@@ -19,6 +18,9 @@ function OfferList(props: OfferListProps){
         <Card
           key={offer.id}
           offer={offer}
+          isActive={activeCardId === offer.id}
+          onMouseEnter={() => setActiveCardId(offer.id)}
+          onMouseLeave={() => setActiveCardId(null)}
         />
       ))}
     </div>

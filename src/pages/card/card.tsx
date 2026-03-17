@@ -4,17 +4,24 @@ import { Link } from 'react-router-dom';
 
 type CardProps = {
   offer: Offer;
+  isActive?: boolean;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
 };
 
 function Card(props: CardProps){
-  const {offer} = props;
+  const { offer, onMouseEnter, onMouseLeave, isActive } = props;
   const {id, title, type, price, previewImage, isFavorite, isPremium, rating} = offer;
 
   const ratingWidth = `${Math.round(rating) * 20}%`;
 
 
   return(
-    <article className="cities__card place-card">
+    <article
+      className={`cities__card place-card ${isActive ? 'place-card--active' : ''}`}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
       <div className="place-card__mark">
         {isPremium ? <span>Premium</span> : ''}
       </div>
