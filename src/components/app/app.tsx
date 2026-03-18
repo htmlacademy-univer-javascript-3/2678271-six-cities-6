@@ -3,29 +3,37 @@ import { AppRoute, AuthorizationStatus } from '../../const';
 import Main from '../../pages/main/main';
 import Login from '../../pages/login/login';
 import Favorite from '../../pages/favorites/favorites';
-import Offer from '../../pages/offer/offer';
+import OfferPage from '../../pages/offer/offer';
 import NotFound from '../../pages/not-found/not-found';
 import PrivateRoute from '../../pages/private-route/private-route';
+import {Offer} from '../../types/offer';
 
 type MainProps = {
-  rentalOffersNumber: number;
+  offers: Offer[];
 }
 
-function App({rentalOffersNumber}: MainProps) {
+function App({offers}: MainProps) {
+  const favoriteOffer = offers.filter((offer) => offer.isFavorite);
+
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Main}
-          element={<Main rentalOffersNumber={rentalOffersNumber} />}
+          element={
+            <Main
+              rentalOffersNumber={offers.length}
+              offers={offers}
+            />
+          }
         />
         <Route
           path={AppRoute.Favorites}
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.NoAuth}
+              authorizationStatus={AuthorizationStatus.Auth}
             >
-              <Favorite />
+              <Favorite offers={favoriteOffer}/>
             </PrivateRoute>
           }
         />
@@ -35,7 +43,7 @@ function App({rentalOffersNumber}: MainProps) {
         />
         <Route
           path={AppRoute.Offer}
-          element={<Offer />}
+          element={<OfferPage />}
         />
         <Route
           path="*"
