@@ -1,6 +1,6 @@
 import OfferList from '../offers-list/offers-list';
 import {Offer} from '../../types/offer';
-
+import Map from '../map/map';
 
 type MainProps = {
   rentalOffersNumber: number;
@@ -122,7 +122,13 @@ function Main({rentalOffersNumber, offers}: MainProps) {
               </div>
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map" />
+              <section className="cities__map map">
+                <Map
+                  city={offers[0].city.location}
+                  points={offers}
+                  selectedPoint={offers[0]}
+                />
+              </section>
             </div>
           </div>
         </div>
