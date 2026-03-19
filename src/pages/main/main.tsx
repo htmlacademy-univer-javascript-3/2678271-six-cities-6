@@ -1,6 +1,6 @@
 import OfferList from '../offers-list/offers-list';
 import {Offer} from '../../types/offer';
-import Map from '..//map/map';
+import Map from '../map/map';
 
 type MainProps = {
   rentalOffersNumber: number;
