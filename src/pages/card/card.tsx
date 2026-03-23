@@ -1,8 +1,7 @@
 import {Offer} from '../../types/offer';
 import { Link } from 'react-router-dom';
 
-
-type CardProps = {
+export type CardProps = {
   offer: Offer;
   variant?: 'cities' | 'near';
   isActive?: boolean;

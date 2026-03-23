@@ -1,12 +1,7 @@
 import Card from '../card/card';
-import { Offer } from '../../types/offer';
+import { CardProps } from '../card/card';
 
-type NearCardProps = {
-  offer: Offer;
-  isActive?: boolean;
-  onMouseEnter?: () => void;
-  onMouseLeave?: () => void;
-};
+type NearCardProps = Omit<CardProps, 'variant'>;
 
 function NearCard(props: NearCardProps) {
   return <Card {...props} variant="near" />;
