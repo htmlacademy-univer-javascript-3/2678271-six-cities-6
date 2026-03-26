@@ -1,5 +1,7 @@
+import { CityName } from '../const';
+
 export type City = {
-  name: string;
+  name: CityName;
   location: Location;
 };
 

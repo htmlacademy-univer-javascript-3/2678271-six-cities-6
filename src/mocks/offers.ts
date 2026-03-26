@@ -31,7 +31,7 @@ export const offers: Offer[] = [
     price: 319,
     previewImage: 'https://14.design.htmlacademy.pro/static/hotel/17.jpg',
     city: {
-      name: 'Amsterdam',
+      name: 'Paris',
       location: {
         latitude: 52.373057,
         longitude: 4.892557,
