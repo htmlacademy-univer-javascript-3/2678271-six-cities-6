@@ -23,9 +23,11 @@ function Card(props: CardProps){
       onMouseEnter={() => onMouseEnter(offer.id)}
       onMouseLeave={() => onMouseLeave()}
     >
-      <div className="place-card__mark">
-        {isPremium ? <span>Premium</span> : ''}
-      </div>
+      {isPremium && (
+        <div className="place-card__mark">
+          <span>Premium</span>
+        </div>
+      )}
       <div className={`${classPrefix}__image-wrapper place-card__image-wrapper`}>
         <a href="#">
           <img
