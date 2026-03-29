@@ -4,8 +4,8 @@ import Card from '../card/card';
 type OfferListProps = {
   offers: Offer[];
   variant?: 'cities' | 'near';
-  activeCardId: string | null;
-  onCardHover: (id: string | null) => void;
+  activeCardId?: string | null;
+  onCardHover?: (id: string | null) => void;
 };
 
 function OfferList(props: OfferListProps){
@@ -23,8 +23,8 @@ function OfferList(props: OfferListProps){
           offer={offer}
           variant={variant}
           isActive={activeCardId === offer.id}
-          onMouseEnter={() => onCardHover(offer.id)}
-          onMouseLeave={() => onCardHover(null)}
+          onMouseEnter={() => onCardHover?.(offer.id)}
+          onMouseLeave={() => onCardHover?.(null)}
         />
       ))}
     </div>
