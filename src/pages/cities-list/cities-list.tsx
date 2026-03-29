@@ -7,12 +7,6 @@ type CitiesListProps = {
 }
 
 function CitiesList({ activeCity, onCityChange }: CitiesListProps){
-
-
-  const handleClick = (city: CityName) => {
-    onCityChange(city);
-  };
-
   return(
     <ul className="locations__list tabs__list">
       {CITIES.map((city) => (
@@ -20,7 +14,7 @@ function CitiesList({ activeCity, onCityChange }: CitiesListProps){
           <Link
             to='/'
             className={`locations__item-link tabs__item ${city === activeCity ? 'tabs__item--active' : ''}`}
-            onClick={() => handleClick(city)}
+            onClick={() => onCityChange(city)}
           >
             <span>{city}</span>
           </Link>
