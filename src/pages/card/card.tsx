@@ -5,8 +5,8 @@ export type CardProps = {
   offer: Offer;
   variant?: 'cities' | 'near';
   isActive?: boolean;
-  onMouseEnter?: () => void;
-  onMouseLeave?: () => void;
+  onMouseEnter: (offer: Offer['id']) => void;
+  onMouseLeave: () => void;
 };
 
 function Card(props: CardProps){
@@ -20,8 +20,8 @@ function Card(props: CardProps){
   return(
     <article
       className={`${classPrefix}__card place-card ${isActive ? 'place-card--active' : ''}`}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
+      onMouseEnter={() => onMouseEnter(offer.id)}
+      onMouseLeave={() => onMouseLeave()}
     >
       <div className="place-card__mark">
         {isPremium ? <span>Premium</span> : ''}
