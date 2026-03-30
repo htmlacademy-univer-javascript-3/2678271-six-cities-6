@@ -6,13 +6,10 @@ import Favorite from '../../pages/favorites/favorites';
 import OfferPage from '../../pages/offer/offer';
 import NotFound from '../../pages/not-found/not-found';
 import PrivateRoute from '../../pages/private-route/private-route';
-import {Offer} from '../../types/offer';
+import { useAppSelector } from '../../hooks/index';
 
-type MainProps = {
-  offers: Offer[];
-}
-
-function App({offers}: MainProps) {
+function App() {
+  const offers = useAppSelector((state) => state.offers);
   const favoriteOffer = offers.filter((offer) => offer.isFavorite);
 
   return (
@@ -21,10 +18,7 @@ function App({offers}: MainProps) {
         <Route
           path={AppRoute.Main}
           element={
-            <Main
-              rentalOffersNumber={offers.length}
-              offers={offers}
-            />
+            <Main />
           }
         />
         <Route
