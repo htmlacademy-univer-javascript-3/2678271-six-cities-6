@@ -21,7 +21,7 @@ function Card(props: CardProps){
     <article
       className={`${classPrefix}__card place-card ${isActive ? 'place-card--active' : ''}`}
       onMouseEnter={() => onMouseEnter(offer.id)}
-      onMouseLeave={() => onMouseLeave()}
+      onMouseLeave={onMouseLeave}
     >
       {isPremium && (
         <div className="place-card__mark">

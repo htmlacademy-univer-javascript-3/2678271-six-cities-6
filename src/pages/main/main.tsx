@@ -4,11 +4,12 @@ import Map from '../map/map';
 import CitiesList from '../cities-list/cities-list';
 import EmptyMain from '../empty-main/empty-main';
 import { useAppDispatch, useAppSelector } from '../../hooks/index';
-import { changeCity } from '../../store/action';
+import { changeCity, changeSort } from '../../store/action';
 import { CityName } from '../../const';
 import SortOptions from '../sort-options/sort-options';
 import { useState } from 'react';
 import {SortOption} from '../../const';
+import {getSortedOffers} from '../../utils';
 
 function getCityOffers(offers: Offer[], city: string){
   return offers.filter((offer) => offer.city.name === city);
@@ -16,11 +17,13 @@ function getCityOffers(offers: Offer[], city: string){
 
 function Main() {
   const activeCity = useAppSelector((store) => store.city);
+  const activeSort = useAppSelector((store) => store.sort);
   const allOffers = useAppSelector((store) => store.offers);
+
   const dispatch = useAppDispatch();
+
   const cityOffers = getCityOffers(allOffers, activeCity);
   const hasOffers = cityOffers.length > 0;
-  const [activeSort, setActiveSort] = useState<SortOption>(SortOption.Popular);
   const [activeCardId, setActiveCardId] = useState<string | null>(null);
 
   const handleCityChange = (city: CityName) => {
@@ -28,24 +31,10 @@ function Main() {
   };
 
   const handleSortChange = (sort: SortOption) => {
-    setActiveSort(sort);
+    dispatch(changeSort(sort));
   };
 
-  const getSortedOffers = () => {
-    const sorted = [...cityOffers];
-    switch(activeSort) {
-      case 'Price: high to low':
-        return sorted.sort((a, b) => b.price - a.price);
-      case 'Price: low to high':
-        return sorted.sort((a, b) => a.price - b.price);
-      case 'Top rated first':
-        return sorted.sort((a, b) => b.rating - a.rating);
-      default:
-        return sorted;
-    }
-  };
-
-  const offers = getSortedOffers();
+  const offers = getSortedOffers(cityOffers, activeSort);
   const activeOffer = offers.find((offer) => offer.id === activeCardId) || null;
 
   return (
