@@ -7,20 +7,10 @@ import OfferPage from '../../pages/offer/offer';
 import NotFound from '../../pages/not-found/not-found';
 import PrivateRoute from '../../pages/private-route/private-route';
 import { useAppSelector } from '../../hooks/index';
-import LoadingScreen from '../../pages/loading-screen/loading-screen';
-
 
 function App() {
   const offers = useAppSelector((state) => state.offers);
   const favoriteOffer = offers.filter((offer) => offer.isFavorite);
-
-  const isOffersLoading = useAppSelector((state) => state.isOffersLoading);
-
-  if (isOffersLoading) {
-    return (
-      <LoadingScreen />
-    );
-  }
 
   return (
     <BrowserRouter>

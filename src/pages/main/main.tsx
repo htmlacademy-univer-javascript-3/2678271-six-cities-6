@@ -10,12 +10,15 @@ import SortOptions from '../sort-options/sort-options';
 import { useState } from 'react';
 import {SortOption} from '../../const';
 import {getSortedOffers} from '../../utils';
+import LoadingScreen from '../../pages/loading-screen/loading-screen';
 
 function getCityOffers(offers: Offer[], city: string){
   return offers.filter((offer) => offer.city.name === city);
 }
 
 function Main() {
+  const isOffersLoading = useAppSelector((state) => state.isOffersLoading);
+
   const activeCity = useAppSelector((store) => store.city);
   const activeSort = useAppSelector((store) => store.sort);
   const allOffers = useAppSelector((store) => store.offers);
@@ -87,38 +90,39 @@ function Main() {
             />
           </section>
         </div>
-
-        {hasOffers ? (
-          <div className="cities">
-            <div className="cities__places-container container">
-              <section className="cities__places places">
-                <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">{offers.length} places to stay in {activeCity}</b>
-                <SortOptions
-                  activeSort={activeSort}
-                  onSortChange={handleSortChange}
-                />
-                <div className="cities__places-list places__list tabs__content">
-                  <OfferList
-                    offers={offers}
-                    activeCardId={activeCardId}
-                    onCardHover={setActiveCardId}
-                  />
+        {isOffersLoading ? <LoadingScreen /> :
+          <div>
+            {hasOffers ? (
+              <div className="cities">
+                <div className="cities__places-container container">
+                  <section className="cities__places places">
+                    <h2 className="visually-hidden">Places</h2>
+                    <b className="places__found">{offers.length} places to stay in {activeCity}</b>
+                    <SortOptions
+                      activeSort={activeSort}
+                      onSortChange={handleSortChange}
+                    />
+                    <div className="cities__places-list places__list tabs__content">
+                      <OfferList
+                        offers={offers}
+                        activeCardId={activeCardId}
+                        onCardHover={setActiveCardId}
+                      />
+                    </div>
+                  </section>
+                  <div className="cities__right-section">
+                    <section className="cities__map map">
+                      <Map
+                        city={offers[0].city.location}
+                        points={offers}
+                        selectedPoint={activeOffer}
+                      />
+                    </section>
+                  </div>
                 </div>
-              </section>
-              <div className="cities__right-section">
-                <section className="cities__map map">
-                  <Map
-                    city={offers[0].city.location}
-                    points={offers}
-                    selectedPoint={activeOffer}
-                  />
-                </section>
               </div>
-            </div>
-          </div>
-        ) : <EmptyMain activeCity={activeCity} />}
-
+            ) : <EmptyMain activeCity={activeCity} />}
+          </div>}
       </main>
     </div>
   );
