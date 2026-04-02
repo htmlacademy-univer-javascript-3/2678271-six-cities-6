@@ -95,39 +95,43 @@ function Main() {
             />
           </section>
         </div>
-        {isOffersLoading ? <LoadingScreen /> :
-          <div>
-            {hasOffers ? (
-              <div className="cities">
-                <div className="cities__places-container container">
-                  <section className="cities__places places">
-                    <h2 className="visually-hidden">Places</h2>
-                    <b className="places__found">{offers.length} places to stay in {activeCity}</b>
-                    <SortOptions
-                      activeSort={activeSort}
-                      onSortChange={handleSortChange}
-                    />
-                    <div className="cities__places-list places__list tabs__content">
-                      <OfferList
-                        offers={offers}
-                        activeCardId={activeCardId}
-                        onCardHover={setActiveCardId}
-                      />
-                    </div>
-                  </section>
-                  <div className="cities__right-section">
-                    <section className="cities__map map">
-                      <Map
-                        city={offers[0].city.location}
-                        points={offers}
-                        selectedPoint={activeOffer}
-                      />
-                    </section>
-                  </div>
+        {isOffersLoading && <LoadingScreen />}
+
+        {!isOffersLoading && hasOffers && (
+          <div className="cities">
+            <div className="cities__places-container container">
+              <section className="cities__places places">
+                <h2 className="visually-hidden">Places</h2>
+                <b className="places__found">{offers.length} places to stay in {activeCity}</b>
+                <SortOptions
+                  activeSort={activeSort}
+                  onSortChange={handleSortChange}
+                />
+                <div className="cities__places-list places__list tabs__content">
+                  <OfferList
+                    offers={offers}
+                    activeCardId={activeCardId}
+                    onCardHover={setActiveCardId}
+                  />
                 </div>
+              </section>
+              <div className="cities__right-section">
+                <section className="cities__map map">
+                  <Map
+                    city={offers[0].city.location}
+                    points={offers}
+                    selectedPoint={activeOffer}
+                  />
+                </section>
               </div>
-            ) : <EmptyMain activeCity={activeCity} />}
-          </div>}
+            </div>
+          </div>
+        )}
+
+        {!isOffersLoading && !hasOffers && (
+          <EmptyMain activeCity={activeCity} />
+        )}
+
       </main>
     </div>
   );
