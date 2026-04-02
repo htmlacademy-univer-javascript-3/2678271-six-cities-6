@@ -32,7 +32,7 @@ function Main() {
 
   useEffect(() => {
     dispatch(fetchOffersAction());
-  },);
+  },[dispatch]);
 
   const handleCityChange = (city: CityName) => {
     dispatch(changeCity(city));
