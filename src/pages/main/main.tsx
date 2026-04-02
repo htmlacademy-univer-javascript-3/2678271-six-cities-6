@@ -7,10 +7,11 @@ import { useAppDispatch, useAppSelector } from '../../hooks/index';
 import { changeCity, changeSort } from '../../store/action';
 import { CityName } from '../../const';
 import SortOptions from '../sort-options/sort-options';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {SortOption} from '../../const';
 import {getSortedOffers} from '../../utils';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
+import {fetchOffersAction} from '../../store/api-action';
 
 function getCityOffers(offers: Offer[], city: string){
   return offers.filter((offer) => offer.city.name === city);
@@ -28,6 +29,10 @@ function Main() {
   const cityOffers = getCityOffers(allOffers, activeCity);
   const hasOffers = cityOffers.length > 0;
   const [activeCardId, setActiveCardId] = useState<string | null>(null);
+
+  useEffect(() => {
+    dispatch(fetchOffersAction());
+  },);
 
   const handleCityChange = (city: CityName) => {
     dispatch(changeCity(city));
