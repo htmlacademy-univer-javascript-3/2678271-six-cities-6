@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { offers } from '../../mocks/offers';
+import { useAppSelector } from '../../hooks/index';
 import { reviews} from '../../mocks/reviews';
 import CommentForm from '../comment-form/comment-form';
 import ReviewList from '../review-list/review-list';
@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 
 function OfferPage() {
   const { id } = useParams<{ id: string }>();
+  const offers = useAppSelector((state) => state.offers);
   const offer = offers.find((item) => item.id === id);
   const nearOffers = offers.filter((item) => item.id !== id);
 

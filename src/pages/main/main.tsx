@@ -7,15 +7,19 @@ import { useAppDispatch, useAppSelector } from '../../hooks/index';
 import { changeCity, changeSort } from '../../store/action';
 import { CityName } from '../../const';
 import SortOptions from '../sort-options/sort-options';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {SortOption} from '../../const';
 import {getSortedOffers} from '../../utils';
+import LoadingScreen from '../../pages/loading-screen/loading-screen';
+import {fetchOffersAction} from '../../store/api-action';
 
 function getCityOffers(offers: Offer[], city: string){
   return offers.filter((offer) => offer.city.name === city);
 }
 
 function Main() {
+  const isOffersLoading = useAppSelector((state) => state.isOffersLoading);
+
   const activeCity = useAppSelector((store) => store.city);
   const activeSort = useAppSelector((store) => store.sort);
   const allOffers = useAppSelector((store) => store.offers);
@@ -25,6 +29,10 @@ function Main() {
   const cityOffers = getCityOffers(allOffers, activeCity);
   const hasOffers = cityOffers.length > 0;
   const [activeCardId, setActiveCardId] = useState<string | null>(null);
+
+  useEffect(() => {
+    dispatch(fetchOffersAction());
+  },[dispatch]);
 
   const handleCityChange = (city: CityName) => {
     dispatch(changeCity(city));
@@ -87,8 +95,9 @@ function Main() {
             />
           </section>
         </div>
+        {isOffersLoading && <LoadingScreen />}
 
-        {hasOffers ? (
+        {!isOffersLoading && hasOffers && (
           <div className="cities">
             <div className="cities__places-container container">
               <section className="cities__places places">
@@ -117,7 +126,11 @@ function Main() {
               </div>
             </div>
           </div>
-        ) : <EmptyMain activeCity={activeCity} />}
+        )}
+
+        {!isOffersLoading && !hasOffers && (
+          <EmptyMain activeCity={activeCity} />
+        )}
 
       </main>
     </div>
