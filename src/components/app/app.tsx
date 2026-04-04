@@ -1,5 +1,5 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute } from '../../const';
 import Main from '../../pages/main/main';
 import Login from '../../pages/login/login';
 import Favorite from '../../pages/favorites/favorites';
@@ -24,9 +24,7 @@ function App() {
         <Route
           path={AppRoute.Favorites}
           element={
-            <PrivateRoute
-              authorizationStatus={AuthorizationStatus.Auth}
-            >
+            <PrivateRoute>
               <Favorite offers={favoriteOffer}/>
             </PrivateRoute>
           }
