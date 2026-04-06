@@ -1,5 +1,6 @@
 import axios, {AxiosInstance, AxiosError} from 'axios';
-import {getToken} from './token';
+import {getToken, dropToken} from './token';
+import {AppRoute} from './const';
 
 const BACKEND_URL = 'https://14.design.htmlacademy.pro/six-cities';
 const REQUEST_TIMEOUT = 5000;
@@ -12,7 +13,7 @@ export const createAPI = (): AxiosInstance => {
 
   api.interceptors.request.use(
     (config) => {
-      const isLoginRequest = config.url === '/login' && config.method === 'post';
+      const isLoginRequest = config.url === AppRoute.Login && config.method === 'post';
 
       if (!isLoginRequest) {
         const token = getToken();
@@ -29,7 +30,7 @@ export const createAPI = (): AxiosInstance => {
     (response) => response,
     (error: AxiosError) => {
       if (error.response?.status === 401) {
-        //обработка
+        dropToken();
       }
       throw error;
     }
