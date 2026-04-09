@@ -13,6 +13,7 @@ function CitiesList({ activeCity, onCityChange }: CitiesListProps){
         <li key={city} className="locations__item">
           <Link
             to='/'
+            data-testid={city}
             className={`locations__item-link tabs__item ${city === activeCity ? 'tabs__item--active' : ''}`}
             onClick={() => onCityChange(city)}
           >

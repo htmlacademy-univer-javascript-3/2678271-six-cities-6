@@ -60,6 +60,7 @@ function Login(){
                   className="login__input form__input"
                   type="email"
                   name="email"
+                  data-testid="login-input"
                   placeholder="Email"
                   required
                 />
@@ -71,11 +72,12 @@ function Login(){
                   className="login__input form__input"
                   type="password"
                   name="password"
+                  data-testid="password-input"
                   placeholder="Password"
                   required
                 />
               </div>
-              <button className="login__submit form__submit button" type="submit">
+              <button className="login__submit form__submit button" type="submit" data-testid="submit-btn">
                 Sign in
               </button>
             </form>

@@ -78,7 +78,7 @@ function Main() {
                   </li>
                   <li className="header__nav-item">
                     <a className="header__nav-link" href="#">
-                      <span className="header__signout">Sign out</span>
+                      <span className="header__signout" data-testid="signout-link">Sign out</span>
                     </a>
                   </li>
                 </ul>
@@ -113,7 +113,7 @@ function Main() {
             <div className="cities__places-container container">
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">{offers.length} places to stay in {activeCity}</b>
+                <b className="places__found" data-testid="offers-list-header">{offers.length} places to stay in {activeCity}</b>
                 <SortOptions
                   activeSort={activeSort}
                   onSortChange={handleSortChange}
