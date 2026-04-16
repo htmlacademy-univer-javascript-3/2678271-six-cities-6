@@ -46,6 +46,6 @@ test('user can filter offers by city', async ({ page }) => {
     const cityLink = mainPage.getCityLink(city);
     await cityLink.click();
 
-    await expect(page.getByTestId('offers-list-header')).toContainText(city);
+    await expect(mainPage.offersListHeader).toContainText(city);
   }
 });

@@ -13,6 +13,7 @@ export class sixCitiesMainPage {
 
     this.priceElements = page.getByTestId('price');
     this.ratingElements = page.getByTestId('rating-stars');
+    this.offersListHeader = page.getByTestId('offers-list-header');
   }
 
   public readonly url: string;
@@ -21,6 +22,7 @@ export class sixCitiesMainPage {
 
   public readonly sortByPriceAsc: Locator;
 
+  public readonly offersListHeader: Locator;
   public readonly sortDropdown: Locator;
   public readonly sortByPriceDesc: Locator;
   public readonly sortByPopular: Locator;
