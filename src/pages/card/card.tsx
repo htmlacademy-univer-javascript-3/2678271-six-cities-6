@@ -42,7 +42,7 @@ function Card(props: CardProps){
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">€{price}</b>
+            <b data-testid="price" className="place-card__price-value">€{price}</b>
             <span className="place-card__price-text">
               /&nbsp;night
             </span>
@@ -63,7 +63,7 @@ function Card(props: CardProps){
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{ width: ratingWidth }} />
+            <span data-testid="rating-stars" data-rating={rating} style={{ width: ratingWidth }} />
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

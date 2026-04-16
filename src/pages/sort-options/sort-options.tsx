@@ -12,7 +12,7 @@ function SortOptions({ activeSort, onSortChange }: SortOptionsProps) {
   return(
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
-      <span className="places__sorting-type" tabIndex={0} onClick={() => setIsOpen((prev) => !prev)}>
+      <span className="places__sorting-type" tabIndex={0} data-testid="sort-dropdown" onClick={() => setIsOpen((prev) => !prev)}>
         {activeSort}
         <svg className="places__sorting-arrow" width={7} height={4}>
           <use xlinkHref="#icon-arrow-select" />
@@ -22,6 +22,7 @@ function SortOptions({ activeSort, onSortChange }: SortOptionsProps) {
         {SORT_OPTIONS.map((option) => (
           <li
             key={option}
+            data-testid={option}
             className={`places__option ${option === activeSort ? 'places__option--active' : ''}`}
             tabIndex={0}
             onClick={() => {
